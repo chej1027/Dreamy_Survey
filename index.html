@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>수면 패턴 맞춤 설문</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: Arial, sans-serif; 
+      background: url('https://i.imgur.com/1OpiwKZ.jpeg') no-repeat center center/cover;
+      color: white;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif; 
+      font-size: 3rem;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 100px;
+      margin-bottom: 100px; 
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    .menu {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      z-index: 10;
+      display: flex;
+      gap: 20px;
+      font-size: 20px;
+      color: white;
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      font-family: 'Playfair Display', serif;
+      transition: opacity 0.3s;
+    }
+
+    .menu a:hover {
+      opacity: 0.7;
+    }
+
+    .survey-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      max-width: 800px;
+      width: 100%;
+    }
+
+    .question-box {
+      background: linear-gradient(to bottom, #45688e, #7a9abf); 
+      border-radius: 15px;
+      padding: 20px;
+      width: 300px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+
+    .question-box h2 {
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+    }
+
+    .option-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .option-group label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: white;
+      color: black;
+      padding: 10px 15px;
+      border-radius: 10px;
+      font-size: 1rem;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .option-group input[type="radio"] {
+      accent-color: navy;
+      transform: scale(1.2);
+    }
+
+    .option-group label:hover {
+      background: #f0f0f0;
+    }
+
+    canvas {
+      margin-top: 30px;
+      border: 2px solid white;
+      background-color: white;
+      display: block;
+    }
+
+    .result-button {
+      margin-top: 30px;
+      padding: 10px 20px;
+      background: #7a9abf;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      transition: background 0.3s ease;
+    }
+
+    .result-button:hover {
+      background: #45688e;
+    }
+
+    .result {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 1.5rem;
+      color: #fffdbb;
+    }
+  </style>
+</head>
+<body>
+  <!-- Menu Section -->
+  <div class="menu">
+    <a href="#main">Main</a>
+    <a href="#survey">Survey</a>
+    <a href="#mockup">Mockup</a>
+  </div>
+
+  <h1>SURVEY</h1>
+  
+  <!-- 설문 컨테이너 -->
+  <div class="survey-container">
+    <!-- 설문 질문들 -->
+    <div class="question-box">
+      <h2>1. 하루 평균 수면 시간은 몇 시간인가요?</h2>
+      <div class="option-group">
+        <label>
+          4시간 이하
+          <input type="radio" name="sleepTime" value="4">
+        </label>
+        <label>
+          5~8시간
+          <input type="radio" name="sleepTime" value="6.5">
+        </label>
+        <label>
+          9시간 이상
+          <input type="radio" name="sleepTime" value="9">
+        </label>
+      </div>
+    </div>
+
+    <div class="question-box">
+      <h2>2. 주로 어떤 자세로 잠을 주무시나요?</h2>
+      <div class="option-group">
+        <label>
+          똑바로 누워서 (민무늬)
+          <input type="radio" name="pattern" value="solid">
+        </label>
+        <label>
+          옆으로 누워서 (스트라이프)
+          <input type="radio" name="pattern" value="stripe">
+        </label>
+        <label>
+          엎드려서 (체크)
+          <input type="radio" name="pattern" value="check">
+        </label>
+      </div>
+    </div>
+
+    <div class="question-box">
+      <h2>3. 수면 중 꿈을 자주 꾸나요?</h2>
+      <div class="option-group">
+        <label>
+          자주 꾼다 (생동감 있는 패턴)
+          <input type="radio" name="vividness" value="dynamic">
+        </label>
+        <label>
+          가끔 꾼다 (잔잔한 무늬)
+          <input type="radio" name="vividness" value="calm">
+        </label>
+        <label>
+          거의 꾸지 않는다 (심플한 패턴)
+          <input type="radio" name="vividness" value="simple">
+        </label>
+      </div>
+    </div>
+
+    <div class="question-box">
+      <h2>4. 수면 전 가장 자주 느끼는 감정은 무엇인가요?</h2>
+      <div class="option-group">
+        <label>
+          평온함 (녹색)
+          <input type="radio" name="color" value="green">
+        </label>
+        <label>
+          긴장감 (파란색)
+          <input type="radio" name="color" value="blue">
+        </label>
+        <label>
+          설렘 (아이보리색)
+          <input type="radio" name="color" value="ivory">
+        </label>
+      </div>
+    </div>
+
+    <div class="question-box">
+      <h2>5. 수면 후 가장 바라는 기분은 어떤가요?</h2>
+      <div class="option-group">
+        <label>
+          차분함 (톤다운)
+          <input type="radio" name="tone" value="dark">
+        </label>
+        <label>
+          행복감 (파스텔톤)
+          <input type="radio" name="tone" value="pastel">
+        </label>
+      </div>
+    </div>
+
+    <div class="question-box">
+      <h2>6. 아침 기상 난이도는 어떤가요?</h2>
+      <div class="option-group">
+        <label>
+          네
+          <input type="radio" name="morning" value="yes">
+        </label>
+        <label>
+          보통
+          <input type="radio" name="morning" value="average">
+        </label>
+        <label>
+          아니오
+          <input type="radio" name="morning" value="no">
+        </label>
+      </div>
+    </div>
+    <div class="question-box">
+  <h2>7. 아침에 몇 번의 알람을 듣고 일어나시나요?</h2>
+  <div class="option-group">
+    <label>
+      1번 (빠른 기상)
+      <input type="radio" name="alarm" value="1">
+    </label>
+    <label>
+      2~3번 (평균적인 기상)
+      <input type="radio" name="alarm" value="2-3">
+    </label>
+    <label>
+      4번 이상 (어려운 기상)
+      <input type="radio" name="alarm" value="4+">
+    </label>
+  </div>
+</div>
+
+<div class="question-box">
+  <h2>8. 주말과 평일 수면 패턴의 차이는 얼마나 되나요?</h2>
+  <div class="option-group">
+    <label>
+      거의 차이 없음
+      <input type="radio" name="patternDiff" value="none">
+    </label>
+    <label>
+      1~2시간
+      <input type="radio" name="patternDiff" value="1-2">
+    </label>
+    <label>
+      3시간 이상
+      <input type="radio" name="patternDiff" value="3+">
+    </label>
+  </div>
+</div>
+  </div>
+  </div>
+
+  <button class="result-button" id="generate-pattern">패턴 생성</button>
+  <canvas id="patternCanvas" width="500" height="500"></canvas>
+  <div class="result" id="resultDisplay"></div>
+
+  <script>
+  </script>
+</body>
+</html>
