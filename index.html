@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
@@ -207,15 +207,15 @@
       <h2>4. 수면 전 가장 자주 느끼는 감정은 무엇인가요?</h2>
       <div class="option-group">
         <label>
-          평온함 (녹색)
+          평온함 (연팽크)
           <input type="radio" name="color" value="green">
         </label>
         <label>
-          긴장감 (파란색)
+          긴장감 (하늘)
           <input type="radio" name="color" value="blue">
         </label>
         <label>
-          설렘 (아이보리색)
+          설렘 (연보라)
           <input type="radio" name="color" value="ivory">
         </label>
       </div>
@@ -292,81 +292,78 @@
 
   <button class="result-button" id="generate-pattern">패턴 생성</button>
   <canvas id="patternCanvas" width="500" height="500"></canvas>
-  <div class="result" id="resultDisplay"></div>
+  <div class="result" id="resultDisplay"></div><script>
+document.getElementById('generate-pattern').addEventListener('click', function() {
+  const sleepTime = document.querySelector('input[name="sleepTime"]:checked')?.value;
+  const pattern = document.querySelector('input[name="pattern"]:checked')?.value;
+  const vividness = document.querySelector('input[name="vividness"]:checked')?.value;
+  const color = document.querySelector('input[name="color"]:checked')?.value;
+  const tone = document.querySelector('input[name="tone"]:checked')?.value;
+  const morning = document.querySelector('input[name="morning"]:checked')?.value;
+  const alarm = document.querySelector('input[name="alarm"]:checked')?.value;
+  const patternDiff = document.querySelector('input[name="patternDiff"]:checked')?.value;
 
-  <script>
-   document.getElementById('generate-pattern').addEventListener('click', function() {
-      const sleepTime = document.querySelector('input[name="sleepTime"]:checked')?.value;
-      const pattern = document.querySelector('input[name="pattern"]:checked')?.value;
-      const vividness = document.querySelector('input[name="vividness"]:checked')?.value;
-      const color = document.querySelector('input[name="color"]:checked')?.value;
-      const tone = document.querySelector('input[name="tone"]:checked')?.value;
-      const morning = document.querySelector('input[name="morning"]:checked')?.value;
-      const alarm = document.querySelector('input[name="alarm"]:checked')?.value;
-      const patternDiff = document.querySelector('input[name="patternDiff"]:checked')?.value;
+  if (!sleepTime || !pattern || !vividness || !color || !tone || !morning || !alarm || !patternDiff) {
+    alert('모든 질문에 답변해 주세요!');
+    return;
+  }
 
-      if (!sleepTime || !pattern || !vividness || !color || !tone || !morning || !alarm || !patternDiff) {
-        alert('모든 질문에 답변해 주세요!');
-        return;
-      }
+  const canvas = document.getElementById('patternCanvas');
+  const ctx = canvas.getContext('2d');
 
-      const canvas = document.getElementById('patternCanvas');
-      const ctx = canvas.getContext('2d');
+  const colors = {
+    green: '#FFC0CB', 
+    blue: '#87CEEB', 
+    ivory: '#E6E6FA'
+  };
 
-      const colors = {
-        green: '#00FF00',
-        blue: '#0000FF',
-        ivory: '#FFFFF0'
-      };
-      const tones = {
-        dark: 'rgba(0, 0, 0, 0.5)',
-        pastel: 'rgba(255, 255, 255, 0.8)'
-      };
+  const tones = {
+    dark: 'rgba(0, 0, 0, 0.5)',
+    pastel: 'rgba(255, 255, 255, 0.8)'
+  };
 
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      ctx.fillStyle = tones[tone] || '#FFFFFF';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = tones[tone] || '#FFFFFF';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      const patterns = {
-        solid: drawSolidPattern,
-        stripe: drawStripePattern,
-        check: drawCheckPattern
-      };
+  const patterns = {
+    solid: drawSolidPattern,
+    stripe: drawStripePattern,
+    check: drawCheckPattern
+  };
 
-      const vividnessIntensity = vividness === 'dynamic' ? 15 : vividness === 'calm' ? 30 : 50;
-      const primaryColor = colors[color] || '#CCCCCC';
+  const vividnessIntensity = vividness === 'dynamic' ? 15 : vividness === 'calm' ? 30 : 50;
+  const primaryColor = colors[color] || '#CCCCCC';
 
-      patterns[pattern]?.(ctx, canvas.width, canvas.height, primaryColor, vividnessIntensity);
+  patterns[pattern]?.(ctx, canvas.width, canvas.height, primaryColor, vividnessIntensity);
 
-      document.getElementById('resultDisplay').innerText = `
-        수면 시간: ${sleepTime}시간, 패턴: ${pattern}, 감정: ${color}, 
-        기상 난이도: ${morning}, 알람 횟수: ${alarm}, 패턴 차이: ${patternDiff}
-      `;
-    });
+  document.getElementById('resultDisplay').innerText = `
+    수면 시간: ${sleepTime}시간, 패턴: ${pattern}, 감정: ${color}, 
+    기상 난이도: ${morning}, 알람 횟수: ${alarm}, 패턴 차이: ${patternDiff}
+  `;
+});
 
-    function drawSolidPattern(ctx, width, height, color) {
-      ctx.fillStyle = color;
-      ctx.fillRect(0, 0, width, height);
-    }
+function drawSolidPattern(ctx, width, height, color) {
+  ctx.fillStyle = color;
+  ctx.fillRect(0, 0, width, height);
+}
 
-    function drawStripePattern(ctx, width, height, color, spacing) {
-      ctx.fillStyle = color;
-      for (let i = 0; i < width; i += spacing) {
-        ctx.fillRect(i, 0, spacing / 2, height);
-      }
-    }
+function drawStripePattern(ctx, width, height, color, spacing) {
+  ctx.fillStyle = color;
+  for (let i = 0; i < width; i += spacing) {
+    ctx.fillRect(i, 0, spacing / 2, height);
+  }
+}
 
-    function drawCheckPattern(ctx, width, height, color, size) {
-      ctx.fillStyle = color;
-      for (let y = 0; y < height; y += size) {
-        for (let x = 0; x < width; x += size) {
-          if ((x / size + y / size) % 2 === 0) {
-            ctx.fillRect(x, y, size, size);
-          }
-        }
+function drawCheckPattern(ctx, width, height, color, size) {
+  ctx.fillStyle = color;
+  for (let y = 0; y < height; y += size) {
+    for (let x = 0; x < width; x += size) {
+      if ((x / size + y / size) % 2 === 0) {
+        ctx.fillRect(x, y, size, size);
       }
     }
-  </script>
-</body>
-</html>
+  }
+}
+</script>
