@@ -17,8 +17,6 @@
       align-items: center;
       min-height: 100vh;
     }
-
-    /* 상단 메뉴 스타일 */
     #menu {
       position: absolute;
       top: 10px;
@@ -28,20 +26,17 @@
       gap: 20px;
       font-size: 20px;
       color: white;
+      font-family: 'Playfair Display', serif;
     }
-
     #menu a {
       text-decoration: none;
       color: white;
       font-weight: bold;
-      font-family: 'Playfair Display', serif;
       transition: opacity 0.3s;
     }
-
     #menu a:hover {
       opacity: 0.7;
     }
-
     h1 {
       font-family: 'Playfair Display', serif; 
       font-size: 3rem;
@@ -51,7 +46,6 @@
       margin-bottom: 100px; 
       text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
     }
-
     .survey-container {
       display: flex;
       flex-wrap: wrap;
@@ -60,7 +54,6 @@
       max-width: 800px;
       width: 100%;
     }
-
     .question-box {
       background: linear-gradient(to bottom, #45688e, #7a9abf); 
       border-radius: 15px;
@@ -69,18 +62,15 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
       text-align: center;
     }
-
     .question-box h2 {
       font-size: 1.2rem;
       margin-bottom: 15px;
     }
-
     .option-group {
       display: flex;
       flex-direction: column;
       gap: 10px;
     }
-
     .option-group label {
       display: flex;
       align-items: center;
@@ -94,16 +84,13 @@
       cursor: pointer;
       transition: background 0.3s ease;
     }
-
     .option-group input[type="radio"] {
       accent-color: navy;
       transform: scale(1.2);
     }
-
     .option-group label:hover {
       background: #f0f0f0;
     }
-
     .result-button {
       margin-top: 30px;
       padding: 10px 20px;
@@ -117,11 +104,9 @@
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
       transition: background 0.3s ease;
     }
-
     .result-button:hover {
       background: #45688e;
     }
-
     .display-container {
       display: flex;
       align-items: center;
@@ -129,7 +114,6 @@
       margin-top: 30px;
       margin-bottom: 50px;
     }
-
     .score-box {
       background: #7a9abf;
       color: white;
@@ -142,7 +126,6 @@
       text-align: center;
       white-space: pre-line; 
     }
-
     .small-tip {
       font-size: 0.9rem;
       font-weight: normal;
@@ -150,7 +133,6 @@
       margin-top: 10px;
       line-height: 1.4;
     }
-
     canvas {
       border: 2px solid white;
       background-color: white;
@@ -160,201 +142,202 @@
 <body>
   
   <div id="menu">
-    <a href="https://chej1027.github.io/Dreamy_Main/">Main</a>
-    <a href="https://chej1027.github.io/Dreamy_Survey/">Survey</a>
-    <a href="https://chej1027.github.io/Dreamy_Mockup/">Mockup</a>
+    <a href="https://chej1027.github.io/Dreamy_Main/">main</a>
+    <a href="https://chej1027.github.io/Dreamy_Survey/">survey</a>
+    <a href="https://chej1027.github.io/Dreamy_Mockup/">mockup</a>
   </div>
 
   <h1>SURVEY</h1>
 
-  <div class="survey-container">
-  
-    <div class="question-box">
-      <h2>1. 하루 평균 수면 시간은 몇 시간인가요?</h2>
-      <div class="option-group">
-        <label>4시간 이하<input type="radio" name="sleepTime" value="5"></label>
-        <label>5~8시간<input type="radio" name="sleepTime" value="15"></label>
-        <label>9시간 이상<input type="radio" name="sleepTime" value="25"></label>
-      </div>
-    </div>
-
-
-    <div class="question-box">
-      <h2>2. 주로 어떤 자세로 잠을 주무시나요?</h2>
-      <div class="option-group">
-        <label>똑바로 누워서<input type="radio" name="pattern" value="solid"></label>
-        <label>옆으로 누워서<input type="radio" name="pattern" value="stripe"></label>
-        <label>엎드려서<input type="radio" name="pattern" value="check"></label>
-      </div>
-    </div>
-
-
-    <div class="question-box">
-      <h2>3. 수면 중 꿈을 자주 꾸나요?</h2>
-      <div class="option-group">
-        <label>자주 꾼다<input type="radio" name="vividness" value="dynamic"></label>
-        <label>가끔 꾼다<input type="radio" name="vividness" value="calm"></label>
-        <label>거의 꾸지 않는다<input type="radio" name="vividness" value="simple"></label>
-      </div>
-    </div>
-
-    <div class="question-box">
-      <h2>4. 수면 전 가장 자주 느끼는 감정은 무엇인가요?</h2>
-      <div class="option-group">
-        <label>평온함<input type="radio" name="color" value="green"></label>
-        <label>긴장감<input type="radio" name="color" value="blue"></label>
-        <label>설렘<input type="radio" name="color" value="ivory"></label>
-      </div>
-    </div>
-
-
-    <div class="question-box">
-      <h2>5. 수면 후 가장 바라는 기분은 어떤가요?</h2>
-      <div class="option-group">
-        <label>차분함<input type="radio" name="tone" value="dark"></label>
-        <label>행복감<input type="radio" name="tone" value="pastel"></label>
-      </div>
-    </div>
-
-
-    <div class="question-box">
-      <h2>6. 아침 기상 난이도는 어떤가요?</h2>
-      <div class="option-group">
-        <label>쉬움<input type="radio" name="morning" value="5"></label>
-        <label>보통<input type="radio" name="morning" value="15"></label>
-        <label>어려움<input type="radio" name="morning" value="25"></label>
-      </div>
-    </div>
-
-
-    <div class="question-box">
-      <h2>7. 아침에 몇 번의 알람을 듣고 일어나시나요?</h2>
-      <div class="option-group">
-        <label>1번 (빠른 기상)<input type="radio" name="alarm" value="25"></label>
-        <label>2~3번 (평균)<input type="radio" name="alarm" value="15"></label>
-        <label>4번 이상 (어려운 기상)<input type="radio" name="alarm" value="5"></label>
-      </div>
-    </div>
-
-
-    <div class="question-box">
-      <h2>8. 주말과 평일 수면 패턴의 차이는 얼마나 되나요?</h2>
-      <div class="option-group">
-        <label>거의 차이 없음<input type="radio" name="patternDiff" value="25"></label>
-        <label>1~2시간<input type="radio" name="patternDiff" value="15"></label>
-        <label>3시간 이상<input type="radio" name="patternDiff" value="5"></label>
-      </div>
+ <div class="survey-container">
+  <div class="question-box">
+    <h2>1. 하루 평균 수면 시간은 몇 시간인가요? </h2>
+    <div class="option-group">
+      <label>4시간 이하 <input type="radio" name="sleepTime" value="5"></label>
+      <label>5~8시간 <input type="radio" name="sleepTime" value="15"></label>
+      <label>9시간 이상 <input type="radio" name="sleepTime" value="25"></label>
     </div>
   </div>
 
-
-  <button class="result-button" id="final-result">결과 확인하기</button>
-
-  <div class="display-container">
-
-    <div class="score-box" id="scoreBox">
-      Q. 당신의 수면 점수는?<br>
+  <div class="question-box">
+    <h2>2. 주로 어떤 자세로 잠을 주무시나요?</h2>
+    <div class="option-group">
+      <label>똑바로 누워서<input type="radio" name="pattern" value="solid"></label>
+      <label>옆으로 누워서<input type="radio" name="pattern" value="stripe"></label>
+      <label>엎드려서<input type="radio" name="pattern" value="check"></label>
     </div>
-    <canvas id="patternCanvas" width="500" height="500"></canvas>
   </div>
 
-  <script>
-    document.getElementById('final-result').addEventListener('click', function () {
- 
-      const pattern = document.querySelector('input[name="pattern"]:checked')?.value;
-      const vividness = document.querySelector('input[name="vividness"]:checked')?.value;
-      const color = document.querySelector('input[name="color"]:checked')?.value;
-      const tone = document.querySelector('input[name="tone"]:checked')?.value;
+  <div class="question-box">
+    <h2>3. 수면 중 꿈을 자주 꾸나요?</h2>
+    <div class="option-group">
+      <label>자주 꾼다<input type="radio" name="vividness" value="dynamic"></label>
+      <label>가끔 꾼다<input type="radio" name="vividness" value="calm"></label>
+      <label>거의 꾸지 않는다<input type="radio" name="vividness" value="simple"></label>
+    </div>
+  </div>
 
-      const sleepTime = parseInt(document.querySelector('input[name="sleepTime"]:checked')?.value || 0);
-      const morning = parseInt(document.querySelector('input[name="morning"]:checked')?.value || 0);
-      const alarm = parseInt(document.querySelector('input[name="alarm"]:checked')?.value || 0);
-      const patternDiff = parseInt(document.querySelector('input[name="patternDiff"]:checked')?.value || 0);
+  <div class="question-box">
+    <h2>4. 수면 전 가장 자주 느끼는 감정은 무엇인가요?</h2>
+    <div class="option-group">
+      <label>평온함<input type="radio" name="color" value="brown"></label>
+      <label>긴장감<input type="radio" name="color" value="pink"></label>
+      <label>설렘<input type="radio" name="color" value="haneul"></label>
+    </div>
+  </div>
 
-      if (!pattern || !vividness || !color || !tone || !sleepTime || !morning || !alarm || !patternDiff) {
-        alert('1~8번 질문에 모두 답해주세요!');
-        return;
-      }
+  <div class="question-box">
+    <h2>5. 수면 후 가장 바라는 기분은 어떤가요?</h2>
+    <div class="option-group">
+      <label>차분함<input type="radio" name="tone" value="dark"></label>
+      <label>행복감<input type="radio" name="tone" value="pastel"></label>
+    </div>
+  </div>
 
-      const canvas = document.getElementById('patternCanvas');
-      const ctx = canvas.getContext('2d');
+  <div class="question-box">
+    <h2>6. 아침 기상 난이도는 어떤가요?</h2>
+    <div class="option-group">
+      <label>쉬움<input type="radio" name="morning" value="5"></label>
+      <label>보통<input type="radio" name="morning" value="15"></label>
+      <label>어려움<input type="radio" name="morning" value="25"></label>
+    </div>
+  </div>
 
-      const colors = {
-        green: '#FFC0CB', 
-        blue: '#87CEEB', 
-        ivory: '#E6E6FA'
-      };
+  <div class="question-box">
+    <h2>7. 아침에 몇번의 알람을 듣고 일어시나요?</h2>
+    <div class="option-group">
+      <label>1번<input type="radio" name="alarm" value="25"></label>
+      <label>2~3번<input type="radio" name="alarm" value="15"></label>
+      <label>4번 이상<input type="radio" name="alarm" value="5"></label>
+    </div>
+  </div>
 
-      const tones = {
-        dark: 'rgba(0, 0, 0, 0.5)',
-        pastel: 'rgba(255, 255, 255, 0.8)'
-      };
+  <div class="question-box">
+    <h2>8. 주말과 평일의 수면 패턴 차이는 얼마나 되나요?</h2>
+    <div class="option-group">
+      <label>거의 없음<input type="radio" name="patternDiff" value="25"></label>
+      <label>1~2시간<input type="radio" name="patternDiff" value="15"></label>
+      <label>3시간 이상<input type="radio" name="patternDiff" value="5"></label>
+    </div>
+  </div>
+</div>
 
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+<button class="result-button" id="final-result">결과 확인하기</button>
 
-      ctx.fillStyle = tones[tone] || '#FFFFFF';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+<div class="display-container">
+  <div class="score-box" id="scoreBox"></div>
+  <canvas id="patternCanvas" width="500" height="500"></canvas>
+</div>
 
-      const patterns = {
-        solid: drawSolidPattern,
-        stripe: drawStripePattern,
-        check: drawCheckPattern
-      };
+<script>
+  document.getElementById('final-result').addEventListener('click', function () {
+    const pattern = document.querySelector('input[name="pattern"]:checked')?.value;
+    const vividness = document.querySelector('input[name="vividness"]:checked')?.value;
+    const color = document.querySelector('input[name="color"]:checked')?.value;
+    const tone = document.querySelector('input[name="tone"]:checked')?.value;
 
-      const vividnessIntensity = vividness === 'dynamic' ? 15 : vividness === 'calm' ? 30 : 50;
-      const primaryColor = colors[color] || '#CCCCCC';
+    const sleepTime = parseInt(document.querySelector('input[name="sleepTime"]:checked')?.value || 0);
+    const morning = parseInt(document.querySelector('input[name="morning"]:checked')?.value || 0);
+    const alarm = parseInt(document.querySelector('input[name="alarm"]:checked')?.value || 0);
+    const patternDiff = parseInt(document.querySelector('input[name="patternDiff"]:checked')?.value || 0);
 
-      patterns[pattern]?.(ctx, canvas.width, canvas.height, primaryColor, vividnessIntensity);
-
-      const totalScore = sleepTime + morning + alarm + patternDiff;
-
-      let tip = '';
-      if (totalScore === 20) {
-        tip = '규칙적인 수면시간을 가져보세요. 스케줄을 일정하게 유지해보는 것은 어떨까요?';
-      } else if (totalScore === 30) {
-        tip = '수면시간을 조금 더 늘려보세요. 자기 전 밝은 빛을 줄이는 것도 도움이 됩니다.';
-      } else if (totalScore === 40) {
-        tip = '가벼운 스트레칭이나 명상으로 수면 환경을 개선해보세요.';
-      } else if (totalScore === 50) {
-        tip = '수면환경을 더 편안하게 만들어보세요. 조용하고 어두운 환경 조성이 중요합니다.';
-      } else if (totalScore === 60) {
-        tip = '자기 전 스마트폰 사용을 줄여보세요. 화면에서 나오는 빛이 수면에 영향을 줄 수 있어요.';
-      } else if (totalScore === 70) {
-        tip = '카페인 섭취를 줄여보세요. 오후 시간대부터는 디카페인 음료를 시도해보는 것은 어떨까요?';
-      } else if (totalScore === 80) {
-        tip = '적당한 운동을 해보세요. 가벼운 산책이나 요가가 수면에 도움이 될 수 있어요.';
-      } else if (totalScore === 90) {
-        tip = '자기 전 따뜻한 차 한 잔을 마셔보세요. 몸과 마음을 편안하게 만들어줍니다.';
-      } else if (totalScore === 100) {
-        tip = '이미 좋은 수면 습관을 가지고 있군요! 더 좋은 수면을 위해 자기 전 몸을 따뜻하게 유지해보세요.';
-      }
-
-      document.getElementById('scoreBox').innerHTML = `Q. 당신의 수면 점수는?<br>당신의 수면 점수는 ${totalScore}점 입니다.` + 
-        (tip ? `<br><span class="small-tip">${tip}</span>` : '');
-    });
-
-    function drawSolidPattern(ctx, width, height, color) {
-      ctx.fillStyle = color;
-      ctx.fillRect(0, 0, width, height);
+    if (!pattern || !vividness || !color || !tone || !sleepTime || !morning || !alarm || !patternDiff) {
+      alert('1~8번 질문에 모두 답해주세요!');
+      return;
     }
 
-    function drawStripePattern(ctx, width, height, color, spacing) {
-      ctx.fillStyle = color;
-      for (let i = 0; i < width; i += spacing) {
-        ctx.fillRect(i, 0, spacing / 2, height);
-      }
-    }
+    // 수면시간에 따른 패턴(도형)색
+    let shapeColor='';
+    if(sleepTime===5) shapeColor='#9CC3EE'; //4시간 이하 파란색
+    else if(sleepTime===15) shapeColor='#FDEDD4'; //5~8시간 아이보리
+    else if(sleepTime===25) shapeColor='#FFFFFF'; //9시간 이상 흰색
 
-    function drawCheckPattern(ctx, width, height, color, size) {
-      ctx.fillStyle = color;
-      for (let y = 0; y < height; y += size) {
-        for (let x = 0; x < width; x += size) {
-          if ((x / size + y / size) % 2 === 0) {
-            ctx.fillRect(x, y, size, size);
-          }
+    // vividness에 따른 간격
+    let spacing=0;
+    if(vividness==='dynamic') spacing=15; 
+    else if(vividness==='calm') spacing=30; 
+    else if(vividness==='simple') spacing=50;
+
+    // color에 따른 배경색
+    let bgColor='';
+    if(color==='brown') bgColor='#BFA17F'; //브라운
+    else if(color==='pink') bgColor='#F6D7E6'; //핑크
+    else if(color==='haneul') bgColor='#B3E5FC'; //하늘색
+
+    const canvas = document.getElementById('patternCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // 배경 채우기
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle=bgColor;
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+
+    // 패턴 그리기
+    if(pattern==='solid'){
+      // 원무늬
+      for(let x=0;x<=canvas.width;x+=spacing){
+        for(let y=0;y<=canvas.height;y+=spacing){
+          ctx.beginPath();
+          ctx.arc(x,y,10,0,Math.PI*2);
+          ctx.fillStyle=shapeColor;
+          ctx.fill();
         }
       }
+    } else if(pattern==='stripe'){
+      // 스트라이프: 세로선
+      ctx.strokeStyle=shapeColor;
+      ctx.lineWidth=2;
+      for(let x=0;x<=canvas.width;x+=spacing){
+        ctx.beginPath();
+        ctx.moveTo(x,0);
+        ctx.lineTo(x,canvas.height);
+        ctx.stroke();
+      }
+    } else if(pattern==='check'){
+      // 가로+세로 선
+      ctx.strokeStyle=shapeColor;
+      ctx.lineWidth=2;
+      for(let x=0;x<=canvas.width;x+=spacing){
+        ctx.beginPath();
+        ctx.moveTo(x,0);
+        ctx.lineTo(x,canvas.height);
+        ctx.stroke();
+      }
+      for(let y=0;y<=canvas.height;y+=spacing){
+        ctx.beginPath();
+        ctx.moveTo(0,y);
+        ctx.lineTo(canvas.width,y);
+        ctx.stroke();
+      }
     }
-  </script>
+
+    // 점수 계산 부분 (기존 로직 유지)
+    const totalScore = sleepTime + morning + alarm + patternDiff;
+
+    let tip = '';
+    if (totalScore === 20) {
+      tip = '규칙적인 수면시간을 가져보세요. 스케줄을 일정하게 유지해보는 것은 어떨까요?';
+    } else if (totalScore === 30) {
+      tip = '수면시간을 조금 더 늘려보세요. 자기 전 밝은 빛을 줄이는 것도 도움이 됩니다.';
+    } else if (totalScore === 40) {
+      tip = '가벼운 스트레칭이나 명상으로 수면 환경을 개선해보세요.';
+    } else if (totalScore === 50) {
+      tip = '수면환경을 더 편안하게 만들어보세요. 조용하고 어두운 환경 조성이 중요합니다.';
+    } else if (totalScore === 60) {
+      tip = '자기 전 스마트폰 사용을 줄여보세요. 화면에서 나오는 빛이 수면에 영향을 줄 수 있어요.';
+    } else if (totalScore === 70) {
+      tip = '카페인 섭취를 줄여보세요. 오후 시간대부터는 디카페인 음료를 시도해보는 것은 어떨까요?';
+    } else if (totalScore === 80) {
+      tip = '적당한 운동을 해보세요. 가벼운 산책이나 요가가 수면에 도움이 될 수 있어요.';
+    } else if (totalScore === 90) {
+      tip = '자기 전 따뜻한 차 한 잔을 마셔보세요. 몸과 마음을 편안하게 만들어줍니다.';
+    } else if (totalScore === 100) {
+      tip = '이미 좋은 수면 습관을 가지고 있군요! 더 좋은 수면을 위해 자기 전 몸을 따뜻하게 유지해보세요.';
+    }
+
+    document.getElementById('scoreBox').innerHTML = `당신의 수면 점수는 ${totalScore}점 입니다.` + 
+      (tip ? `<br><span class="small-tip">${tip}</span>` : '');
+  });
+</script>
 </body>
 </html>
