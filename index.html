@@ -17,7 +17,7 @@
       align-items: center;
       min-height: 100vh;
     }
-    #menu {
+ #menu {
       position: absolute;
       top: 10px;
       right: 20px;
@@ -101,7 +101,7 @@
       border: none;
       border-radius: 10px;
       cursor: pointer;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
       transition: background 0.3s ease;
     }
     .result-button:hover {
@@ -120,31 +120,31 @@
       font-size: 1.2rem;
       font-weight: bold;
       border-radius: 10px;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
       padding: 20px;
       width: 300px;
       text-align: center;
       white-space: pre-line; 
     }
     .small-tip {
-      font-size: 0.9rem;
-      font-weight: normal;
-      display: block;
-      margin-top: 10px;
-      line-height: 1.4;
+      font-size:0.9rem;
+      font-weight:normal;
+      display:block;
+      margin-top:10px;
+      line-height:1.4;
     }
     canvas {
-      border: 2px solid white;
-      background-color: white;
+      border:2px solid white;
+      background-color:white;
     }
   </style>
 </head>
 <body>
   
   <div id="menu">
-    <a href="https://chej1027.github.io/Dreamy_Main/">Main</a>
-    <a href="https://chej1027.github.io/Dreamy_Survey/">Survey</a>
-    <a href="https://chej1027.github.io/Dreamy_Mockup/">Mockup</a>
+    <a href="#main">main</a>
+    <a href="#survey">survey</a>
+    <a href="#mockup">mockup</a>
   </div>
 
   <h1>SURVEY</h1>
@@ -182,7 +182,7 @@
     <div class="option-group">
       <label>평온함<input type="radio" name="color" value="brown"></label>
       <label>긴장감<input type="radio" name="color" value="pink"></label>
-      <label>설렘<input type="radio" name="color" value="haneul"></label>
+      <label>설렘<input type="radio" name="color" value="yello"></label>
     </div>
   </div>
 
@@ -225,7 +225,7 @@
 <button class="result-button" id="final-result">결과 확인하기</button>
 
 <div class="display-container">
-  <div class="score-box" id="scoreBox"></div>
+  <div class="score-box" id="scoreBox">Q.당신의 수면 점수는 ?</div>
   <canvas id="patternCanvas" width="500" height="500"></canvas>
 </div>
 
@@ -235,7 +235,6 @@
     const vividness = document.querySelector('input[name="vividness"]:checked')?.value;
     const color = document.querySelector('input[name="color"]:checked')?.value;
     const tone = document.querySelector('input[name="tone"]:checked')?.value;
-
     const sleepTime = parseInt(document.querySelector('input[name="sleepTime"]:checked')?.value || 0);
     const morning = parseInt(document.querySelector('input[name="morning"]:checked')?.value || 0);
     const alarm = parseInt(document.querySelector('input[name="alarm"]:checked')?.value || 0);
@@ -246,35 +245,51 @@
       return;
     }
 
-    // 수면시간에 따른 패턴(도형)색
-    let shapeColor='';
-    if(sleepTime===5) shapeColor='#9CC3EE'; //4시간 이하 파란색
-    else if(sleepTime===15) shapeColor='#FDEDD4'; //5~8시간 아이보리
-    else if(sleepTime===25) shapeColor='#FFFFFF'; //9시간 이상 흰색
+    // 사용자가 제공한 코드 참고
+    function getAdjustedColor(baseColor, tone) {
+      const colorMap = {
+        brown: { dark: '#714C31', pastel: '#BFA17F' },
+        pink: { dark: '#EA7D9C', pastel: '#F6D7E6' },
+        yello: { dark: '#87CEEB', pastel: '#B3E5FC' }
+      };
+      const selectedColor = colorMap[baseColor] || { dark: '#666', pastel: '#EEE' };
+      return {
+        bgColor: selectedColor[tone === 'dark' ? 'dark' : 'pastel'],
+        patternColor: tone === 'dark' ? '#666' : '#EEE'
+      };
+    }
 
-    // vividness에 따른 간격
+    function getSleepTimeColor(sleepTime, tone) {
+      const colorMap = {
+        blue: { dark: '#0B85CE', pastel: '#9CC3EE' },
+        ivory: { dark: '#F4E4C3', pastel: '#FDEDD4' },
+        white: { dark: '#FFFFFF', pastel: '#FFFFFF' }
+      };
+      const selectedColor = colorMap[sleepTime] || { dark: '#666', pastel: '#EEE' };
+      return selectedColor[tone === 'dark' ? 'dark' : 'pastel'];
+    }
+
+    let shapeKey;
+    if(sleepTime===5) shapeKey='blue'; 
+    else if(sleepTime===15) shapeKey='ivory';
+    else if(sleepTime===25) shapeKey='white';
+
     let spacing=0;
     if(vividness==='dynamic') spacing=15; 
     else if(vividness==='calm') spacing=30; 
     else if(vividness==='simple') spacing=50;
 
-    // color에 따른 배경색
-    let bgColor='';
-    if(color==='brown') bgColor='#BFA17F'; //브라운
-    else if(color==='pink') bgColor='#F6D7E6'; //핑크
-    else if(color==='haneul') bgColor='#B3E5FC'; //하늘색
+    // 배경색/패턴색 결정
+    const { bgColor, patternColor } = getAdjustedColor(color, tone);
+    const shapeColor = getSleepTimeColor(shapeKey, tone);
 
     const canvas = document.getElementById('patternCanvas');
     const ctx = canvas.getContext('2d');
-
-    // 배경 채우기
     ctx.clearRect(0,0,canvas.width,canvas.height);
     ctx.fillStyle=bgColor;
     ctx.fillRect(0,0,canvas.width,canvas.height);
 
-    // 패턴 그리기
     if(pattern==='solid'){
-      // 원무늬
       for(let x=0;x<=canvas.width;x+=spacing){
         for(let y=0;y<=canvas.height;y+=spacing){
           ctx.beginPath();
@@ -284,7 +299,6 @@
         }
       }
     } else if(pattern==='stripe'){
-      // 스트라이프: 세로선
       ctx.strokeStyle=shapeColor;
       ctx.lineWidth=2;
       for(let x=0;x<=canvas.width;x+=spacing){
@@ -294,7 +308,6 @@
         ctx.stroke();
       }
     } else if(pattern==='check'){
-      // 가로+세로 선
       ctx.strokeStyle=shapeColor;
       ctx.lineWidth=2;
       for(let x=0;x<=canvas.width;x+=spacing){
@@ -311,9 +324,7 @@
       }
     }
 
-    // 점수 계산 부분 (기존 로직 유지)
     const totalScore = sleepTime + morning + alarm + patternDiff;
-
     let tip = '';
     if (totalScore === 20) {
       tip = '규칙적인 수면시간을 가져보세요. 스케줄을 일정하게 유지해보는 것은 어떨까요?';
